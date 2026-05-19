@@ -6,23 +6,26 @@
   <title>RRI Renewables Ltd — Gantry Turbine Concept Dashboard</title>
   <style>
     :root {
-      --bg: #0b1220;
-      --panel: #121b2e;
-      --panel-alt: #18243d;
-      --text: #f3f6ff;
+      --bg: #070b14;
+      --panel: rgba(17, 24, 42, 0.85);
+      --panel-alt: rgba(26, 38, 65, 0.88);
+      --text: #f2f7ff;
       --muted: #c2cee8;
-      --accent: #56d0ff;
-      --warning: #ffd56a;
-      --good: #77f5c7;
-      --border: #2d3b5f;
+      --accent: #4dd8ff;
+      --warning: #ffdd8a;
+      --good: #8dffd5;
+      --border: #2f4a76;
       --focus: #ffffff;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #0a1020, #121b33 40%, #101932);
+      font-family: "Segoe UI", "Inter", Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at 10% 10%, #1e2f54 0%, transparent 35%),
+                  radial-gradient(circle at 90% 5%, #184f66 0%, transparent 30%),
+                  linear-gradient(180deg, #060b15, #0b1427 45%, #0b1324);
       color: var(--text);
       line-height: 1.5;
       font-size: 18px;
@@ -90,15 +93,35 @@
     .panel {
       background: var(--panel);
       border: 2px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 1rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(2px);
     }
 
     .panel.alt { background: var(--panel-alt); }
 
     .hidden { display: none; }
 
-    .diagram { width: 100%; height: 260px; border: 2px solid #436194; border-radius: 10px; background: #0b162b; }
+    .diagram {
+      width: 100%;
+      height: 280px;
+      border: 1px solid #4a78a8;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #0e1d36, #091426);
+    }
+    .airflow-animated {
+      stroke-dasharray: 10 10;
+      animation: flow 1.5s linear infinite;
+    }
+    .turbine-blade {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin 2.4s linear infinite;
+    }
+    .slow-spin { animation-duration: 3.4s; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes flow { to { stroke-dashoffset: -40; } }
 
     .inputs {
       display: grid;
@@ -123,12 +146,24 @@
       color: var(--warning);
       font-weight: 700;
     }
+    .investor-banner {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #5ab9d7;
+      background: rgba(28, 67, 97, 0.6);
+      color: #d8f8ff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>RRI Renewables Ltd — Interactive Gantry Turbine Concept Dashboard</h1>
+      <span class="investor-banner">Investor Visual Pack v2</span>
       <button id="presentationToggle" class="toggle-btn">Switch to Presentation Mode</button>
     </header>
 
@@ -149,52 +184,82 @@
         <div class="grid">
           <div class="panel alt">
             <h3>Road Gantry Concept</h3>
-            <svg class="diagram" viewBox="0 0 600 260" aria-label="Simplified road gantry concept diagram">
-              <rect x="30" y="180" width="540" height="40" fill="#28466f"/>
-              <text x="35" y="174" fill="#fff" font-size="16">Road deck</text>
-              <rect x="80" y="50" width="20" height="130" fill="#5479b5"/>
-              <rect x="500" y="50" width="20" height="130" fill="#5479b5"/>
-              <rect x="80" y="40" width="440" height="30" fill="#416394"/>
-              <text x="215" y="34" fill="#fff" font-size="16">Gantry frame</text>
-              <circle cx="230" cy="55" r="12" fill="#7ce8ff"/>
-              <circle cx="300" cy="55" r="12" fill="#7ce8ff"/>
-              <circle cx="370" cy="55" r="12" fill="#7ce8ff"/>
-              <text x="210" y="95" fill="#fff" font-size="15">Turbine modules</text>
-              <line x1="130" y1="20" x2="180" y2="20" stroke="#ffd56a" stroke-width="4" marker-end="url(#arrow)"/>
-              <line x1="190" y1="20" x2="240" y2="20" stroke="#ffd56a" stroke-width="4" marker-end="url(#arrow)"/>
-              <text x="72" y="16" fill="#ffd56a" font-size="14">Airflow direction</text>
-              <text x="420" y="110" fill="#fff" font-size="14">Maintenance access</text>
-              <rect x="400" y="115" width="90" height="8" fill="#9db7df"/>
+            <svg class="diagram" viewBox="0 0 600 280" aria-label="Road gantry concept with animated airflow and turbine rotors">
+              <rect x="0" y="0" width="600" height="280" fill="url(#bgRoad)"/>
+              <rect x="35" y="188" width="530" height="46" fill="#2a4e7d"/>
+              <rect x="35" y="232" width="530" height="18" fill="#1e3351"/>
+              <text x="42" y="181" fill="#d9e8ff" font-size="15">Road carriageway and service lane</text>
+              <rect x="82" y="62" width="24" height="126" rx="4" fill="#668ec8"/>
+              <rect x="494" y="62" width="24" height="126" rx="4" fill="#668ec8"/>
+              <rect x="82" y="48" width="436" height="24" rx="4" fill="#4f74aa"/>
+              <text x="230" y="42" fill="#ebf4ff" font-size="14">Steel gantry beam</text>
+              <g transform="translate(220,60)">
+                <circle cx="0" cy="0" r="16" fill="#8cecff" />
+                <g class="turbine-blade"><rect x="-2" y="-14" width="4" height="28" fill="#eaffff"/><rect x="-14" y="-2" width="28" height="4" fill="#eaffff"/></g>
+              </g>
+              <g transform="translate(300,60)">
+                <circle cx="0" cy="0" r="16" fill="#8cecff" />
+                <g class="turbine-blade slow-spin"><rect x="-2" y="-14" width="4" height="28" fill="#eaffff"/><rect x="-14" y="-2" width="28" height="4" fill="#eaffff"/></g>
+              </g>
+              <g transform="translate(380,60)">
+                <circle cx="0" cy="0" r="16" fill="#8cecff" />
+                <g class="turbine-blade"><rect x="-2" y="-14" width="4" height="28" fill="#eaffff"/><rect x="-14" y="-2" width="28" height="4" fill="#eaffff"/></g>
+              </g>
+              <line class="airflow-animated" x1="100" y1="24" x2="205" y2="24" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow)"/>
+              <line class="airflow-animated" x1="210" y1="24" x2="315" y2="24" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow)"/>
+              <line class="airflow-animated" x1="320" y1="24" x2="425" y2="24" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow)"/>
+              <text x="70" y="18" fill="#ffe08f" font-size="14">Airflow direction (animated)</text>
+              <text x="390" y="118" fill="#ecf4ff" font-size="13">Maintenance walkway</text>
+              <rect x="388" y="123" width="108" height="8" fill="#a6c6ec"/>
               <defs>
                 <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-                  <polygon points="0 0, 10 3, 0 6" fill="#ffd56a"/>
+                  <polygon points="0 0, 10 3, 0 6" fill="#ffe08f"/>
                 </marker>
+                <linearGradient id="bgRoad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#132948"/>
+                  <stop offset="100%" stop-color="#0a1528"/>
+                </linearGradient>
               </defs>
             </svg>
           </div>
           <div class="panel alt">
             <h3>Rail Gantry Concept</h3>
-            <svg class="diagram" viewBox="0 0 600 260" aria-label="Simplified rail gantry concept diagram">
-              <rect x="60" y="190" width="480" height="6" fill="#c5d3f0"/>
-              <rect x="60" y="210" width="480" height="6" fill="#c5d3f0"/>
-              <text x="65" y="182" fill="#fff" font-size="16">Rail corridor</text>
-              <rect x="100" y="55" width="18" height="135" fill="#5479b5"/>
-              <rect x="482" y="55" width="18" height="135" fill="#5479b5"/>
-              <rect x="100" y="45" width="400" height="28" fill="#416394"/>
-              <text x="240" y="38" fill="#fff" font-size="16">Gantry frame</text>
-              <circle cx="220" cy="58" r="11" fill="#7ce8ff"/>
-              <circle cx="300" cy="58" r="11" fill="#7ce8ff"/>
-              <circle cx="380" cy="58" r="11" fill="#7ce8ff"/>
-              <text x="178" y="94" fill="#fff" font-size="15">Turbine modules</text>
-              <line x1="140" y1="22" x2="190" y2="22" stroke="#ffd56a" stroke-width="4" marker-end="url(#arrow2)"/>
-              <line x1="205" y1="22" x2="255" y2="22" stroke="#ffd56a" stroke-width="4" marker-end="url(#arrow2)"/>
-              <text x="82" y="16" fill="#ffd56a" font-size="14">Airflow direction</text>
-              <text x="395" y="110" fill="#fff" font-size="14">Maintenance access</text>
-              <rect x="388" y="116" width="100" height="8" fill="#9db7df"/>
+            <svg class="diagram" viewBox="0 0 600 280" aria-label="Rail gantry concept with animated airflow and turbine rotors">
+              <rect x="0" y="0" width="600" height="280" fill="url(#bgRail)"/>
+              <rect x="72" y="214" width="456" height="6" fill="#d7e3ff"/>
+              <rect x="72" y="238" width="456" height="6" fill="#d7e3ff"/>
+              <rect x="72" y="218" width="456" height="20" fill="#314a70"/>
+              <text x="74" y="202" fill="#e1eeff" font-size="15">Rail corridor with ballast bed</text>
+              <rect x="106" y="66" width="20" height="148" rx="4" fill="#698fc8"/>
+              <rect x="474" y="66" width="20" height="148" rx="4" fill="#698fc8"/>
+              <rect x="106" y="51" width="388" height="24" rx="4" fill="#5276ab"/>
+              <text x="248" y="45" fill="#ecf4ff" font-size="14">Gantry beam + service conduit</text>
+              <g transform="translate(214,63)">
+                <circle cx="0" cy="0" r="15" fill="#85e8ff" />
+                <g class="turbine-blade"><rect x="-2" y="-13" width="4" height="26" fill="#f0fdff"/><rect x="-13" y="-2" width="26" height="4" fill="#f0fdff"/></g>
+              </g>
+              <g transform="translate(300,63)">
+                <circle cx="0" cy="0" r="15" fill="#85e8ff" />
+                <g class="turbine-blade slow-spin"><rect x="-2" y="-13" width="4" height="26" fill="#f0fdff"/><rect x="-13" y="-2" width="26" height="4" fill="#f0fdff"/></g>
+              </g>
+              <g transform="translate(386,63)">
+                <circle cx="0" cy="0" r="15" fill="#85e8ff" />
+                <g class="turbine-blade"><rect x="-2" y="-13" width="4" height="26" fill="#f0fdff"/><rect x="-13" y="-2" width="26" height="4" fill="#f0fdff"/></g>
+              </g>
+              <line class="airflow-animated" x1="96" y1="26" x2="205" y2="26" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow2)"/>
+              <line class="airflow-animated" x1="212" y1="26" x2="321" y2="26" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow2)"/>
+              <line class="airflow-animated" x1="328" y1="26" x2="437" y2="26" stroke="#ffe08f" stroke-width="4" marker-end="url(#arrow2)"/>
+              <text x="68" y="19" fill="#ffe08f" font-size="14">Airflow direction (animated)</text>
+              <text x="392" y="126" fill="#ecf4ff" font-size="13">Inspection walkway</text>
+              <rect x="388" y="131" width="102" height="8" fill="#aac9ef"/>
               <defs>
                 <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-                  <polygon points="0 0, 10 3, 0 6" fill="#ffd56a"/>
+                  <polygon points="0 0, 10 3, 0 6" fill="#ffe08f"/>
                 </marker>
+                <linearGradient id="bgRail" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#15304f"/>
+                  <stop offset="100%" stop-color="#0a1628"/>
+                </linearGradient>
               </defs>
             </svg>
           </div>
