@@ -6,55 +6,55 @@
   <title>RRI Renewables Ltd — Gantry Turbine Concept Dashboard</title>
   <style>
     :root {
-      --bg: #070b14;
-      --panel: rgba(14, 22, 40, 0.88);
-      --panel-alt: rgba(22, 34, 60, 0.9);
-      --text: #eef5ff;
-      --muted: #b6c6e7;
-      --accent: #43d9ff;
+      --bg: #050912;
+      --panel: rgba(10, 20, 36, 0.92);
+      --panel-alt: rgba(19, 33, 56, 0.92);
+      --text: #eef6ff;
+      --muted: #afc4e6;
+      --accent: #59d8ff;
       --energy: #7dffcc;
       --warn: #ffde8a;
-      --line: #335584;
-      --shadow: 0 22px 46px rgba(0, 0, 0, 0.35);
+      --line: #345a8e;
+      --shadow: 0 24px 52px rgba(0, 0, 0, 0.42);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0; color: var(--text); font-family: Inter, "Segoe UI", Arial, sans-serif;
-      background: radial-gradient(circle at 5% 10%, #20355b 0%, transparent 32%), radial-gradient(circle at 90% 8%, #1c4f63 0%, transparent 28%), linear-gradient(#070b14, #091428 60%, #081325);
+      background: radial-gradient(circle at 8% 8%, #1b3358 0%, transparent 34%), radial-gradient(circle at 84% 6%, #184864 0%, transparent 28%), linear-gradient(#050912, #091428 60%, #071224);
     }
-    .container { max-width: 1360px; margin: 0 auto; padding: 1rem 1rem 3rem; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 1rem 1rem 3rem; }
     header { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: space-between; align-items: center; }
-    h1 { margin: 0; font-size: 1.9rem; }
-    h2 { margin-top: 0; }
+    h1 { margin: 0; font-size: 1.85rem; }
     .meta { color: var(--muted); font-weight: 700; }
     .top-note,.footer-note,.panel { border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
-    .top-note { background: #2c2208; color: #ffeec4; padding: .85rem; margin: .9rem 0; font-weight: 700; }
-    .footer-note { background: rgba(44,32,7,.25); color: var(--warn); padding: .85rem; margin-top: 1rem; font-size: .95rem; }
+    .top-note { background: #2d250d; color: #ffeec4; padding: .85rem; margin: .9rem 0; font-weight: 700; }
+    .footer-note { background: rgba(44,32,7,.28); color: var(--warn); padding: .85rem; margin-top: 1rem; font-size: .95rem; }
     .panel { background: var(--panel); padding: 1rem; backdrop-filter: blur(3px); }
     .panel.alt { background: var(--panel-alt); }
     .hidden { display: none; }
     nav, .scenario-bar, .action-bar { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .8rem; }
-    button {
-      border: 1px solid #5dc8e7; background: #11253f; color: var(--text); border-radius: 8px;
-      padding: .55rem .85rem; cursor: pointer; font-weight: 700;
-    }
+    button { border: 1px solid #5dc8e7; background: #11253f; color: var(--text); border-radius: 8px; padding: .55rem .85rem; cursor: pointer; font-weight: 700; }
     button.active { background: #1d4063; }
     .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-    .diagram { width: 100%; height: 340px; border-radius: 10px; border: 1px solid #476e9b; background: #0a1426; }
+    .diagram { width: 100%; height: 360px; border-radius: 10px; border: 1px solid #476e9b; background: #0a1426; }
     .inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .8rem; }
     label { display: block; font-weight: 700; margin-bottom: .25rem; color: #dce9ff; }
     input { width: 100%; background: #0a1223; color: white; border: 1px solid #46648e; border-radius: 8px; padding: .45rem; }
     .value { color: var(--energy); font-weight: 700; }
     .airflow { stroke-dasharray: 12 8; animation: flow 1.5s linear infinite; }
-    .rotor { transform-origin: center; transform-box: fill-box; animation: spin 2s linear infinite; }
-    .vehicle { animation: drive 5s linear infinite; }
-    .train { animation: railMove 6.8s linear infinite; }
+    .airflow-rail { stroke-dasharray: 10 7; animation: flow 1s linear infinite; }
+    .rotor { transform-origin: center; transform-box: fill-box; animation: spin 1.45s linear infinite; }
+    .vehicle { animation: drive 5.2s linear infinite; }
+    .vehicle2 { animation: drive 7.2s linear infinite reverse; }
+    .train { animation: railMove 7.2s linear infinite; }
     .energy-flow { stroke-dasharray: 6 5; animation: flow .8s linear infinite; }
+    .label-chip { fill: #132947; stroke: #73a2d8; }
+    .label-text { fill: #d4e7ff; font-size: 11px; }
+    .legend { display: grid; gap: .3rem; margin-top: .6rem; color: var(--muted); font-size: .94rem; }
     @keyframes flow { to { stroke-dashoffset: -60; } }
     @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes drive { 0% { transform: translateX(-120px);} 100% { transform: translateX(660px);} }
-    @keyframes railMove { 0% { transform: translateX(630px);} 100% { transform: translateX(-260px);} }
-    .explain { color: var(--muted); font-size: .95rem; }
+    @keyframes drive { 0% { transform: translateX(-180px);} 100% { transform: translateX(760px);} }
+    @keyframes railMove { 0% { transform: translateX(700px);} 100% { transform: translateX(-300px);} }
   </style>
 </head>
 <body>
@@ -62,7 +62,7 @@
   <header>
     <div>
       <h1>RRI Renewables — Infrastructure Wind Harvesting Concept Platform</h1>
-      <div class="meta">Investor Visual Pack v3 · Engineering Concept Stage</div>
+      <div class="meta">Investor Visual Pack v4 · Engineering Concept Stage</div>
     </div>
     <button id="presentationToggle">Switch to Presentation Mode</button>
   </header>
@@ -81,55 +81,30 @@
     <section id="visualiser" class="panel tab-section">
       <h2 id="scenarioTitle"></h2>
       <div class="grid">
-        <div class="panel alt">
-          <svg id="sceneSvg" class="diagram" viewBox="0 0 640 340"></svg>
-        </div>
+        <div class="panel alt"><svg id="sceneSvg" class="diagram" viewBox="0 0 760 360"></svg></div>
         <div class="panel alt">
           <h3>Concept explanation and airflow diagram</h3>
-          <svg class="diagram" viewBox="0 0 640 340" aria-label="airflow explanation">
-            <rect width="640" height="340" fill="url(#expBg)"/>
-            <text x="18" y="30" fill="#d8eaff" font-size="16">Flow acceleration around enclosed modular turbine chambers</text>
-            <path d="M20 95 C130 70,210 65,320 95 S520 120,620 96" class="airflow" stroke="#ffd77c" stroke-width="4" fill="none"/>
-            <path d="M20 145 C130 120,210 115,320 145 S520 170,620 146" class="airflow" stroke="#ffd77c" stroke-width="4" fill="none"/>
-            <rect x="180" y="170" width="280" height="90" fill="#203a5f" stroke="#7ea6d4"/>
-            <rect x="200" y="188" width="56" height="56" fill="#1a2e49" stroke="#8fb3de"/>
-            <rect x="292" y="188" width="56" height="56" fill="#1a2e49" stroke="#8fb3de"/>
-            <rect x="384" y="188" width="56" height="56" fill="#1a2e49" stroke="#8fb3de"/>
-            <g transform="translate(228,216)"><circle r="19" fill="#2e537f"/><g class="rotor"><rect x="-2" y="-16" width="4" height="32" fill="#dff"/><rect x="-16" y="-2" width="32" height="4" fill="#dff"/></g></g>
-            <g transform="translate(320,216)"><circle r="19" fill="#2e537f"/><g class="rotor"><rect x="-2" y="-16" width="4" height="32" fill="#dff"/><rect x="-16" y="-2" width="32" height="4" fill="#dff"/></g></g>
-            <g transform="translate(412,216)"><circle r="19" fill="#2e537f"/><g class="rotor"><rect x="-2" y="-16" width="4" height="32" fill="#dff"/><rect x="-16" y="-2" width="32" height="4" fill="#dff"/></g></g>
-            <line x1="228" y1="260" x2="500" y2="260" stroke="#72ffd3" stroke-width="3" class="energy-flow" marker-end="url(#arrE)"/>
-            <rect x="505" y="244" width="110" height="30" fill="#183953" stroke="#69d8ff"/>
-            <text x="514" y="264" fill="#cdf7ff" font-size="13">Power output bus</text>
-            <text x="20" y="305" fill="#b4c8e5" font-size="13">Engineering overlay: truss bay, ducting inlet, access walkway, power conduit, vibration isolation points.</text>
-            <defs>
-              <linearGradient id="expBg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#10243e"/><stop offset="1" stop-color="#0b1426"/></linearGradient>
-              <marker id="arrE" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#72ffd3"/></marker>
-            </defs>
-          </svg>
-          <p class="explain" id="scenarioExplain"></p>
+          <svg id="airflowSvg" class="diagram" viewBox="0 0 760 360"></svg>
+          <div class="legend" id="overlayLegend"></div>
         </div>
       </div>
     </section>
 
     <section id="assumptions" class="panel tab-section hidden"><h2>Input Assumptions</h2><div class="inputs" id="inputs"></div></section>
-    <section id="energy" class="panel tab-section hidden"><h2>Energy model + output comparison</h2><div id="results"></div><svg id="compareChart" class="diagram" viewBox="0 0 640 320"></svg></section>
+    <section id="energy" class="panel tab-section hidden"><h2>Energy model + output comparison</h2><div id="results"></div><svg id="compareChart" class="diagram" viewBox="0 0 760 340"></svg></section>
     <section id="structural" class="panel tab-section hidden"><h2>Engineering-style labels & overlays</h2><div id="structuralData"></div></section>
   </div>
 
-  <section id="presentationMode" class="panel hidden">
-    <h2>Investor presentation mode</h2>
-    <div id="summary"></div>
-  </section>
+  <section id="presentationMode" class="panel hidden"><h2>Investor presentation mode</h2><div id="summary"></div></section>
   <div class="footer-note">Deployable static single-file app for GitHub Pages retained.</div>
 </div>
 
 <script>
 const scenarioConfig = {
-  motorway: {label:"Motorway gantry", factor:1, txt:"Truss gantry over dual carriageway with enclosed turbine bays and animated road airflow/vehicle flow."},
-  railway: {label:"Railway gantry", factor:0.86, txt:"Rail corridor gantry with moving train pulse loads, clearance envelope and ducted chambers."},
-  bridge: {label:"Bridge-mounted system", factor:1.2, txt:"Cross-bridge truss with stronger crosswinds and modular service pods for maintenance."},
-  side: {label:"Side-mounted vertical turbines", factor:0.68, txt:"Roadside towers with vertical-axis modules targeting lateral wake capture."}
+  motorway: {label:"Motorway gantry", factor:1, txt:"Multi-lane motorway truss gantry with enclosed modular turbine chambers above carriageway wake.", env:"motorway"},
+  railway: {label:"Railway gantry", factor:0.86, txt:"Rail corridor gantry system tuned for train pulse airflow and route clearance envelope.", env:"railway"},
+  bridge: {label:"Bridge-mounted system", factor:1.2, txt:"Bridge truss retrofit capturing crosswind and vehicle wake, with deck-side service access.", env:"bridge"},
+  side: {label:"Side-mounted vertical turbines", factor:0.68, txt:"Roadside modules using vertical-axis turbines for lateral wake and constrained clearances.", env:"side"}
 };
 let currentScenario = "motorway";
 const assumptionConfig = [["gantryWidth","Gantry width (m)",34],["gantryHeight","Gantry height (m)",9],["numTurbines","Number of turbines",8],["turbineDiameter","Turbine diameter (m)",2.1],["airflow","Average airflow speed (m/s)",10.8],["hours","Operating hours/day",19],["efficiency","Turbine efficiency (0-1)",0.39],["price","Electricity price (£/kWh)",0.2],["installCost","Installation cost (£)",650000],["maintenance","Annual maintenance (£)",50000]];
@@ -139,35 +114,60 @@ const rho=1.225; const fmt=(n,d=2)=>Number(n).toLocaleString("en-GB",{maximumFra
 function renderScenarioButtons(){const bar=document.getElementById("scenarioBar");bar.innerHTML="";Object.entries(scenarioConfig).forEach(([key,v])=>{const b=document.createElement("button");b.textContent=v.label;b.className=key===currentScenario?"active":"";b.onclick=()=>{currentScenario=key;renderScenarioButtons();renderScene();recalc();};bar.appendChild(b);});}
 function renderInputs(){const w=document.getElementById("inputs");w.innerHTML="";assumptionConfig.forEach(([k,l])=>{const d=document.createElement("div");d.innerHTML=`<label for='${k}'>${l}</label><input id='${k}' type='number' step='any' value='${state[k]}'>`;w.appendChild(d);d.querySelector("input").addEventListener("input",e=>{state[k]=parseFloat(e.target.value)||0;recalc();});});}
 
-function renderScene(){document.getElementById("scenarioTitle").textContent=`${scenarioConfig[currentScenario].label} — infrastructure concept render`;document.getElementById("scenarioExplain").textContent=scenarioConfig[currentScenario].txt;
-const s=document.getElementById("sceneSvg");
-const isRail=currentScenario==="railway";const isBridge=currentScenario==="bridge";const isSide=currentScenario==="side";
-s.innerHTML=`<defs><linearGradient id='bg' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='#132b49'/><stop offset='1' stop-color='#0b1426'/></linearGradient><marker id='arr' markerWidth='10' markerHeight='10' refX='9' refY='4' orient='auto'><polygon points='0 0,10 4,0 8' fill='#ffd77c'/></marker></defs>
-<rect width='640' height='340' fill='url(#bg)'/>
-<rect x='20' y='230' width='600' height='70' fill='${isRail?"#344f74":"#2b4b71"}'/>
-${isRail?"<rect x='40' y='252' width='560' height='5' fill='#d6e7ff'/><rect x='40' y='277' width='560' height='5' fill='#d6e7ff'>":"<rect x='60' y='257' width='520' height='3' fill='#e1eefc' opacity='.8'/>"}
-<rect x='95' y='88' width='24' height='142' fill='#6f96cb'/><rect x='521' y='88' width='24' height='142' fill='#6f96cb'/>
-<rect x='95' y='76' width='450' height='24' fill='#547cb4'/>
-<g stroke='#9cc0ec' stroke-width='2'>${[130,180,230,280,330,380,430,480].map(x=>`<line x1='${x}' y1='78' x2='${x+35}' y2='98'/><line x1='${x}' y1='98' x2='${x+35}' y2='78'/>`).join("")}</g>
-${[180,260,340,420].map(x=>`<rect x='${x-25}' y='102' width='50' height='50' fill='#1a304f' stroke='#88b0df'/><circle cx='${x}' cy='127' r='18' fill='#325981'/><g class='rotor' transform='translate(${x},127)'><rect x='-2' y='-16' width='4' height='32' fill='#eaffff'/><rect x='-16' y='-2' width='32' height='4' fill='#eaffff'/></g>`).join("")}
-<path d='M30 58 C190 24,350 20,610 58' class='airflow' stroke='#ffd77c' stroke-width='4' fill='none' marker-end='url(#arr)'/>
-<path d='M40 170 C220 150,390 145,620 170' class='airflow' stroke='#8fd4ff' stroke-width='3' fill='none' marker-end='url(#arr)'/>
-<line x1='180' y1='160' x2='510' y2='160' class='energy-flow' stroke='#72ffd3' stroke-width='3'/><text x='515' y='165' fill='#8fffd6' font-size='12'>to output converter</text>
-${isRail?"<g class='train'><rect x='0' y='236' width='210' height='34' rx='8' fill='#dceaff'/><rect x='150' y='244' width='45' height='14' fill='#1e3f64'/></g>":"<g class='vehicle'><rect x='0' y='244' width='56' height='22' rx='6' fill='#ecf6ff'/><rect x='72' y='247' width='70' height='19' rx='5' fill='#6ab0ff'/></g>"}
-<text x='16' y='24' fill='#d7e9ff' font-size='13'>Engineering labels: truss bays · enclosed turbine chambers · access catwalk · power conduit</text>
-${isBridge?"<text x='425' y='300' fill='#fbd39c' font-size='13'>Bridge deck mounting points</text>":""}${isSide?"<rect x='30' y='120' width='18' height='110' fill='#5d7faa'/><circle cx='39' cy='140' r='12' fill='#2f5b86'/>":""}`;
+function chamber(x,y,s=1){return `<g><rect x='${x-34*s}' y='${y-34*s}' width='${68*s}' height='${68*s}' rx='7' fill='#172f4c' stroke='#88b3e0'/><circle cx='${x}' cy='${y}' r='${23*s}' fill='#2f5e8f'/><g class='rotor' transform='translate(${x},${y})'>${Array.from({length:10}).map((_,i)=>`<rect x='-2.2' y='-22' width='4.4' height='15' fill='#edf8ff' transform='rotate(${i*36})'/>`).join("")}<circle r='5' fill='#cde3ff'/></g></g>`;}
+
+function renderScene(){
+  const cfg=scenarioConfig[currentScenario];
+  document.getElementById("scenarioTitle").textContent=`${cfg.label} — infrastructure concept render`;
+  const s=document.getElementById("sceneSvg");
+  const isRail=currentScenario==="railway", isBridge=currentScenario==="bridge", isSide=currentScenario==="side";
+  s.innerHTML=`<defs><linearGradient id='bg' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='#162f4f'/><stop offset='1' stop-color='#0a1324'/></linearGradient><marker id='arr' markerWidth='10' markerHeight='10' refX='9' refY='4' orient='auto'><polygon points='0 0,10 4,0 8' fill='#ffd77c'/></marker></defs>
+  <rect width='760' height='360' fill='url(#bg)'/>
+  <rect y='250' width='760' height='110' fill='${isRail?"#324b6f":"#2a4468"}'/>
+  ${isRail?"<rect x='20' y='275' width='720' height='6' fill='#e7f0ff'/><rect x='20' y='312' width='720' height='6' fill='#e7f0ff'/><line x1='35' y1='298' x2='725' y2='298' stroke='#99b6da' stroke-width='3'/>":"<path d='M40 340 L350 260 L760 335' fill='none' stroke='#d8e8ff' stroke-width='4' opacity='.7'/><path d='M80 340 L390 265 L760 330' fill='none' stroke='#d8e8ff' stroke-width='2' stroke-dasharray='15 14'/>"}
+  <rect x='110' y='90' width='24' height='160' fill='#6c8fb9'/><rect x='626' y='90' width='24' height='160' fill='#6c8fb9'/>
+  <rect x='110' y='78' width='540' height='24' fill='#4f77ad'/>
+  <g stroke='#8fb5e1' stroke-width='2'>${[140,188,236,284,332,380,428,476,524,572].map(x=>`<line x1='${x}' y1='79' x2='${x+36}' y2='101'/><line x1='${x}' y1='101' x2='${x+36}' y2='79'/>`).join("")}</g>
+  ${[200,282,364,446,528].map((x)=>chamber(x,137,1)).join("")}
+  <line x1='174' y1='185' x2='645' y2='185' class='energy-flow' stroke='#72ffd3' stroke-width='3'/><text x='648' y='189' fill='#8fffd6' font-size='12'>DC output bus</text>
+  <path d='M20 64 C140 20,360 16,745 64' class='airflow' stroke='#ffd77c' stroke-width='3.5' fill='none' marker-end='url(#arr)'/>
+  <path d='M20 196 C170 168,440 154,748 196' class='${isRail?"airflow-rail":"airflow"}' stroke='#8fd4ff' stroke-width='3' fill='none' marker-end='url(#arr)'/>
+  ${isRail?"<g class='train'><rect x='20' y='274' width='300' height='38' rx='10' fill='#dfebff'/><rect x='56' y='282' width='42' height='16' fill='#244468'/><rect x='112' y='282' width='42' height='16' fill='#244468'/></g>":"<g class='vehicle'><rect x='20' y='280' width='72' height='24' rx='6' fill='#e6f4ff'/><rect x='108' y='283' width='92' height='20' rx='6' fill='#74b6ff'/></g><g class='vehicle2'><rect x='30' y='315' width='68' height='21' rx='6' fill='#ffd89e'/></g>"}
+  ${isBridge?"<text x='520' y='245' fill='#ffd8a8' font-size='12'>Bridge deck brackets + tuned dampers</text>":""}
+  ${isSide?"<g><rect x='46' y='128' width='18' height='122' fill='#6286b4'/><ellipse cx='55' cy='151' rx='14' ry='24' fill='#305e8d'/><g class='rotor' transform='translate(55,151)'><rect x='-2' y='-17' width='4' height='34' fill='#dbf6ff'/><rect x='-17' y='-2' width='34' height='4' fill='#dbf6ff'/></g></g>":""}
+  <rect x='14' y='16' width='320' height='24' class='label-chip'/><text x='22' y='32' class='label-text'>Truss gantry | enclosed turbine modules | maintenance catwalk | power conduit</text>`;
+
+  document.getElementById("airflowSvg").innerHTML=`<defs><linearGradient id='expBg' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='#10243e'/><stop offset='1' stop-color='#0b1426'/></linearGradient><marker id='arrE' markerWidth='8' markerHeight='8' refX='7' refY='4' orient='auto'><polygon points='0 0,8 4,0 8' fill='#72ffd3'/></marker></defs>
+  <rect width='760' height='360' fill='url(#expBg)'/>
+  <text x='18' y='28' fill='#d8eaff' font-size='15'>Airflow explanation diagram — accelerated stream around modular chamber inlets</text>
+  <path d='M20 92 C110 60,220 56,340 84 S560 122,740 88' class='airflow' stroke='#ffd77c' stroke-width='4' fill='none'/>
+  <path d='M20 146 C120 114,220 110,340 138 S560 176,740 142' class='airflow' stroke='#ffd77c' stroke-width='4' fill='none'/>
+  <rect x='170' y='174' width='400' height='108' fill='#203a5f' stroke='#7ea6d4'/>
+  ${[240,320,400,480].map(x=>chamber(x,228,.88)).join("")}
+  <line x1='242' y1='287' x2='620' y2='287' stroke='#72ffd3' stroke-width='3' class='energy-flow' marker-end='url(#arrE)'/>
+  <rect x='624' y='271' width='118' height='30' fill='#183953' stroke='#69d8ff'/><text x='632' y='290' fill='#cdf7ff' font-size='12'>Inverter + grid tie</text>
+  <text x='20' y='328' fill='#b4c8e5' font-size='13'>Overlay notes: wake capture, truss bay segmentation, chamber acoustic lining, vibration isolation, maintenance hatch access.</text>`;
+
+  document.getElementById("overlayLegend").innerHTML=`<div><strong>Scenario concept:</strong> ${cfg.txt}</div><div><strong>Presentation overlay:</strong> airflow vectors, module labels, output bus trace, and chamber segmentation.</div>`;
 }
 
-function recalc(){const factor=scenarioConfig[currentScenario].factor;const area=Math.PI*(state.turbineDiameter/2)**2;const totalArea=area*state.numTurbines;const pW=.5*rho*totalArea*(state.airflow**3)*state.efficiency*factor;const kW=pW/1000;const annual=kW*state.hours*365;const rev=annual*state.price;const net=rev-state.maintenance;const payback=net>0?state.installCost/net:Infinity;
-document.getElementById("results").innerHTML=`<p>Scenario multiplier: <span class='value'>${factor}</span></p><p>Estimated power: <span class='value'>${fmt(kW)} kW</span></p><p>Estimated annual output: <span class='value'>${fmt(annual)} kWh/year</span></p><p>Estimated annual revenue: <span class='value'>£${fmt(rev)}</span></p><p>Simple payback: <span class='value'>${payback===Infinity?"Not achieved":fmt(payback)+" years"}</span></p>`;
-document.getElementById("structuralData").innerHTML=`<p>Truss span: <span class='value'>${fmt(state.gantryWidth,1)} m</span></p><p>Turbine chamber count: <span class='value'>${state.numTurbines}</span></p><p>Static load placeholder: <span class='value'>${fmt(state.numTurbines*1.9,1)} t-equivalent</span></p><p>Dynamic/vibration note: <span class='value'>Requires modal analysis + damping design.</span></p><p>Operations note: <span class='value'>Maintenance bay isolation and traffic possession strategy required.</span></p>`;
-document.getElementById("summary").innerHTML=`<p><strong>Selected scenario:</strong> ${scenarioConfig[currentScenario].label}</p><p><strong>Annual output estimate:</strong> <span class='value'>${fmt(annual)} kWh</span></p><p><strong>Investor framing:</strong> Dual-use infrastructure renewable concept with modular retrofit path and scalable deployment.</p><p><strong>Risk points:</strong> Structural fatigue, safety approvals, downtime uncertainty, CAPEX sensitivity.</p><p><strong>Next steps:</strong> Certified structural design, CFD campaign, corridor-by-corridor feasibility and commercial model calibration.</p>`;
-const benchmarks=[{n:"Motorway",v:annual*(scenarioConfig.motorway.factor/factor)},{n:"Railway",v:annual*(scenarioConfig.railway.factor/factor)},{n:"Bridge",v:annual*(scenarioConfig.bridge.factor/factor)},{n:"Side vertical",v:annual*(scenarioConfig.side.factor/factor)}];
-const max=Math.max(...benchmarks.map(b=>b.v))*1.2;document.getElementById("compareChart").innerHTML=`<rect width='640' height='320' fill='#0d182b'/>${benchmarks.map((b,i)=>{const h=(b.v/max)*210;const x=60+i*140;const y=260-h;return `<rect x='${x}' y='${y}' width='82' height='${h}' fill='${i===0?"#54d6ff":"#4e80b8"}'/><text x='${x}' y='282' fill='#d8e9ff' font-size='13'>${b.n}</text><text x='${x}' y='${y-8}' fill='#8fffd6' font-size='12'>${fmt(b.v,0)}</text>`;}).join("")}<text x='18' y='24' fill='#d8e9ff' font-size='16'>Estimated annual output comparison (kWh/year)</text>`;
+function recalc(){
+  const factor=scenarioConfig[currentScenario].factor;
+  const area=Math.PI*(state.turbineDiameter/2)**2;
+  const totalArea=area*state.numTurbines;
+  const pW=.5*rho*totalArea*(state.airflow**3)*state.efficiency*factor;
+  const kW=pW/1000, annual=kW*state.hours*365, rev=annual*state.price, net=rev-state.maintenance, payback=net>0?state.installCost/net:Infinity;
+  document.getElementById("results").innerHTML=`<p>Scenario multiplier: <span class='value'>${factor}</span></p><p>Estimated power: <span class='value'>${fmt(kW)} kW</span></p><p>Estimated annual output: <span class='value'>${fmt(annual)} kWh/year</span></p><p>Estimated annual revenue: <span class='value'>£${fmt(rev)}</span></p><p>Simple payback: <span class='value'>${payback===Infinity?"Not achieved":fmt(payback)+" years"}</span></p>`;
+  document.getElementById("structuralData").innerHTML=`<p>Truss span: <span class='value'>${fmt(state.gantryWidth,1)} m</span></p><p>Turbine chamber count: <span class='value'>${state.numTurbines}</span></p><p>Placeholder static load: <span class='value'>${fmt(state.numTurbines*1.9,1)} t-equivalent</span></p><p>Dynamic/vibration note: <span class='value'>Modal analysis, tuned mass damping and fatigue checks required.</span></p><p>Operations note: <span class='value'>Maintenance isolation strategy and traffic possession windows required.</span></p>`;
+  document.getElementById("summary").innerHTML=`<p><strong>Selected scenario:</strong> ${scenarioConfig[currentScenario].label}</p><p><strong>Annual output estimate:</strong> <span class='value'>${fmt(annual)} kWh</span></p><p><strong>Investor framing:</strong> Dual-use transport infrastructure renewable platform with modular retrofit potential.</p><p><strong>Risk points:</strong> Structural fatigue, safety approvals, downtime uncertainty, CAPEX sensitivity.</p><p><strong>Next steps:</strong> Certified structural design, corridor CFD campaign, site survey pipeline and commercial calibration.</p>`;
+  const benchmarks=[{n:"Motorway",v:annual*(scenarioConfig.motorway.factor/factor)},{n:"Railway",v:annual*(scenarioConfig.railway.factor/factor)},{n:"Bridge",v:annual*(scenarioConfig.bridge.factor/factor)},{n:"Side vertical",v:annual*(scenarioConfig.side.factor/factor)}];
+  const max=Math.max(...benchmarks.map(b=>b.v))*1.2;
+  document.getElementById("compareChart").innerHTML=`<rect width='760' height='340' fill='#0d182b'/>${benchmarks.map((b,i)=>{const h=(b.v/max)*220;const x=80+i*160;const y=276-h;return `<rect x='${x}' y='${y}' width='94' height='${h}' fill='${i===0?"#54d6ff":"#4e80b8"}'/><text x='${x}' y='302' fill='#d8e9ff' font-size='14'>${b.n}</text><text x='${x}' y='${y-8}' fill='#8fffd6' font-size='12'>${fmt(b.v,0)}</text>`;}).join("")}<text x='20' y='28' fill='#d8e9ff' font-size='16'>Estimated annual output comparison (kWh/year)</text>`;
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tab-section').forEach(s=>s.classList.add('hidden'));document.getElementById(btn.dataset.tab).classList.remove('hidden');});
-const t=document.getElementById("presentationToggle");t.onclick=()=>{const app=document.getElementById("appMode"),pres=document.getElementById("presentationMode"),show=pres.classList.contains("hidden");app.classList.toggle("hidden",show);pres.classList.toggle("hidden",!show);t.textContent=show?"Switch to Interactive Mode":"Switch to Presentation Mode";};
+const t=document.getElementById("presentationToggle");
+t.onclick=()=>{const app=document.getElementById("appMode"),pres=document.getElementById("presentationMode"),show=pres.classList.contains("hidden");app.classList.toggle("hidden",show);pres.classList.toggle("hidden",!show);t.textContent=show?"Switch to Interactive Mode":"Switch to Presentation Mode";};
 
 renderScenarioButtons(); renderInputs(); renderScene(); recalc();
 </script>
